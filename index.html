@@ -151,6 +151,12 @@
 			document.getElementById("content").value= v.capitalize(x);				
 			});
 
+			$('#alternating').on('click',function() {				
+			var x = document.getElementById("content").value;
+			console.log(v.upperCase(x));
+			document.getElementById("content").value= v.swapCase(x);				
+			});
+
 			$('#title').on('click',function() {				
 			var x = document.getElementById("content").value;
 			console.log(v.upperCase(x));
