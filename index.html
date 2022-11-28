@@ -20,13 +20,11 @@
 	  <script src="js/voca.js"></script>	
 	  <script src="js/voca.min.js"></script>	
 	  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-
    </head>
 	<body>	
 		<header class="header">     
 	      <div class="header-top">
 	        <div class="container">
-	          
 	          <div class="ht-right">
 	            <div class="nav-block">                               
 	              <div class="nav-menu">	                
@@ -87,7 +85,6 @@
 	                	</ul>
 	              </div>            
 	            </div>
-
 	            <span class="resnav">
 	                    <span></span>
 	                    <span></span>
@@ -106,7 +103,7 @@
 	   				<img src="images/350x150.png" alt="" />
 	   			</div>
 	   			<div class="place-content">
-	   				<form action="/" method="post">
+	   				<form action="/" method="post" name="is_method">
 	   					<textarea id="content" placeholder="Type or paste your content here" autofocus=""></textarea>
 	   				</form>
 	   				<div class="actions">
@@ -114,11 +111,11 @@
 	   					<button id="lower" class="btn circle-effect">lower case</button> 
 	   					<button id="upper" class="btn circle-effect">UPPER CASE</button> 
 	   					<button id="capitalized" class="btn circle-effect">Capitalized Case</button> 
-	   					<button id="alternating" class="btn circle-effect">aLtErNaTiNg cAsE</button> 
+	   					<!-- <button id="alternating" class="btn circle-effect">aLtErNaTiNg cAsE</button>  -->
 	   					<button id="title" class="btn circle-effect">Title Case</button> 
 	   					<button id="inverse" class="btn circle-effect">InVeRsE CaSe</button> 
-	   					<button id="download" class="btn circle-effect" data-download-target="#content" style="display: inline-block;">Download Text</button> 
-	   					<button id="copy" class="btn circle-effect" data-clipboard-target="#content">Copy to Clipboard</button> 
+	   					<!-- <button id="download" class="btn circle-effect" data-download-target="#content" style="display: inline-block;">Download Text</button> 
+	   					<button id="copy" class="btn circle-effect" data-clipboard-target="#content">Copy to Clipboard</button>  -->
 	   					<button id="clear" class="btn circle-effect">Clear</button> 
 	   					<div class="buy-me-coffee"><a href="javascript:void(0);" class="theme-btn circle-effect">Buy me a Coffee</a></div>
 	   				</div>
@@ -129,10 +126,22 @@
    			</div>
 	   	</div>
 	   </section>
-		
 	   <script>
 		 jQuery(document).ready(function() {  
+			$('#sentence').on('click',function() {		
+				var x = document.getElementById("content").value;
+				var array_1= x.split(". ");
 			
+				for (let i =0; i<array_1.length; i++) {						
+					array_1[i] = array_1[i].charAt(0).toUpperCase() + array_1[i].slice(1);		
+					console.log(x[i]);				
+				}
+				var y=array_1.join(". "); 
+				console.log(y);				
+				
+				document.getElementById("content").value= y;
+							});
+
 			$('#lower').on('click',function() {				
 			var x = document.getElementById("content").value;
 			console.log(v.upperCase(x));
@@ -146,15 +155,17 @@
 			});
 
 			$('#capitalized').on('click',function() {				
-			var x = document.getElementById("content").value;
-			console.log(v.upperCase(x));
-			document.getElementById("content").value= v.capitalize(x);				
-			});
-
-			$('#alternating').on('click',function() {				
-			var x = document.getElementById("content").value;
-			console.log(v.upperCase(x));
-			document.getElementById("content").value= v.swapCase(x);				
+				var x =document.getElementById("content").value;
+				  var output = '';
+			for (let i =0; i<x.length; i++) {
+					if(i==0){
+						output += x[i].toUpperCase();
+					}	
+					else{
+						output += x[i].toLowerCase();
+					}						
+			}
+			document.getElementById('content').value = output;			
 			});
 
 			$('#title').on('click',function() {				
@@ -162,23 +173,19 @@
 			console.log(v.upperCase(x));
 			document.getElementById("content").value= v.titleCase(x);				
 			});
-			
-			
 
-
-
-
-
-
-
-
+			$('#inverse').on('click',function() {				
+			var x = document.getElementById("content").value;
+			console.log(v.upperCase(x));
+			document.getElementById("content").value= v.swapCase(x);				
 			});
 
-
-
-
-
+			$('#clear').on('click',function() {				
+			var x = document.getElementById("content").value;
+			console.log(v.upperCase(x));
+			document.getElementById("content").value= "";				
+			});
+			});
 	   </script>
-    	
 	</body>
 </html>
